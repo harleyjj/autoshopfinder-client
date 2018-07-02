@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Shops from './components/shop-list';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const shops = [
+    "Shop 1",
+    "Shop 2",
+    "Shop 3", 
+    "Shop Blue"
+]
+
+ReactDOM.render(<Shops shops={shops}/>, document.getElementById('root'));
 registerServiceWorker();
