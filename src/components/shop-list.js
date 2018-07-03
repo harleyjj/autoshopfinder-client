@@ -9,7 +9,7 @@ export class ShopList extends React.Component {
 
     render() {
         const shops = this.props.shops.map((shop, index) => {
-            return <li key={index}>{shop}</li>
+            return <li key={index}>{shop.name}</li>
         });
 
         return (
