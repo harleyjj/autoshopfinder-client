@@ -1,4 +1,5 @@
 import {API_BASE_URL} from '../config';
+import {normalizeResponseErrors} from './utils';
 
 export const FETCH_SHOPS_REQUEST = 'FETCH_SHOPS_REQUEST';
 export const fetchShopsRequest = () => ({
@@ -23,11 +24,11 @@ export const fetchShops = () => dispatch => {
         fetch(API_BASE_URL, {
             method: 'GET'
         })
+        .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((data) => dispatch(fetchShopsSuccess(data)))
         .catch(err => {
             dispatch(fetchShopsError(err));
-            return Promise.reject(err);
         })
     );
 }

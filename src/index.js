@@ -5,8 +5,8 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducers/shop';
 import thunk from 'redux-thunk';
-import ShopList from './components/shop-list';
 import registerServiceWorker from './registerServiceWorker';
+import Autoshops from './components/autoshops';
 
 const store = createStore(
     reducer,
@@ -15,7 +15,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <ShopList />
+        <Autoshops />
     </Provider>, 
     document.getElementById('root'));
 

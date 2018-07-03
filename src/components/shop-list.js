@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Spinner from 'react-spinkit';
 import {fetchShops} from '../actions/shop';
 
 export class ShopList extends React.Component {
@@ -7,21 +8,37 @@ export class ShopList extends React.Component {
         this.props.dispatch(fetchShops());
     }
 
-    render() {
-        const shops = this.props.shops.map((shop, index) => {
-            return <li key={index}>{shop.name}</li>
-        });
+    renderResults() {
+        if (this.props.loading) {
+            return <Spinner spinnerName="circle" noFadeIn />;
+        }
 
+        if (this.props.error) {
+            return <strong>{this.props.error.message}</strong>;
+        }
+
+        if (this.props.shops.length > 0) {
+            return this.props.shops.map((shop, index) => {
+                return <li key={index}>{shop.name}</li>
+            });
+        }
+
+        return <li key="no results">No Results</li>;
+    }
+
+    render() {
         return (
             <ul className="shop-list">
-                {shops}
+                {this.renderResults()}
             </ul>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    shops: state.shops
+    shops: state.shops,
+    loading: state.loading,
+    error: state.error
 });
 
 export default connect(mapStateToProps)(ShopList);
