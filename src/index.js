@@ -1,21 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import {createStore, applyMiddleware} from 'redux';
+import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import reducer from './reducers/shop';
-import thunk from 'redux-thunk';
 import registerServiceWorker from './registerServiceWorker';
 import Autoshops from './components/autoshops';
-
-const store = createStore(
-    reducer,
-    applyMiddleware(thunk)
-)
+import store from './store';
+import './index.css';
 
 ReactDOM.render(
     <Provider store={store}>
-        <Autoshops />
+        <Router>
+            <Autoshops />
+        </Router>
     </Provider>, 
     document.getElementById('root'));
 

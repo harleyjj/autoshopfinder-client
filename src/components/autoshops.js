@@ -1,23 +1,23 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import ShopList from './shop-list';
+import ShopLogin from './shop-login';
+import RegistrationPage from './registration-page';
 import './autoshops.css';
 import LandingPage from './landing-page';
 
 export default function Autoshops() {
     return (
-        <Router>
-            <div className="autoshops">
-                <header>
-                    <h1><Link to="/">Autoshops.com</Link></h1>
-                </header>
-                <main>
-                    <Route exact path="/" component={LandingPage}/>
-                    <Route exact path="/shops" component={ShopList}/>
-                    {/* <Route exact path="/shops" component={SignIn}/> */}
-                    <Route exact path="/shopseekers" component={ShopList}/>
-                </main>
-            </div>
-        </Router>
+        <div className="autoshops">
+            <header>
+                <h1><Link to="/">Autoshops.com</Link></h1>
+            </header>
+            <main>
+                <Route exact path="/" component={LandingPage}/>
+                <Route exact path="/shops" component={ShopLogin}/>
+                <Route exact path="/shopseekers" component={ShopList}/>
+                <Route exact path="/register" component={RegistrationPage} />
+            </main>
+        </div>
     );
 }

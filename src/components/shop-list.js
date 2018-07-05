@@ -36,9 +36,9 @@ export class ShopList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    shops: state.shops,
-    loading: state.loading,
-    error: state.error
+    shops: state.shop.shops,
+    loading: state.shop.loading,
+    error: state.shop.error
 });
 
 export default connect(mapStateToProps)(ShopList);
