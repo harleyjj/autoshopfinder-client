@@ -5,6 +5,7 @@ import ShopLogin from './shop-login';
 import RegistrationPage from './registration-page';
 import './autoshops.css';
 import LandingPage from './landing-page';
+import Dashboard from './dashboard';
 
 export default function Autoshops() {
     return (
@@ -17,6 +18,7 @@ export default function Autoshops() {
                 <Route exact path="/shops" component={ShopLogin}/>
                 <Route exact path="/shopseekers" component={ShopList}/>
                 <Route exact path="/register" component={RegistrationPage} />
+                <Route exact path="/dashboard" component={Dashboard} />
             </main>
         </div>
     );

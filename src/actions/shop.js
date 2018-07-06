@@ -21,7 +21,7 @@ export const fetchShopsError = error => ({
 export const fetchShops = () => dispatch => {
     dispatch(fetchShopsRequest());
     return(
-        fetch(API_BASE_URL, {
+        fetch(`${API_BASE_URL}api/shopseekers/`, {
             method: 'GET'
         })
         .then(res => normalizeResponseErrors(res))
