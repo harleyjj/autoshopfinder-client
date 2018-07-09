@@ -11,7 +11,7 @@ export default function Autoshops() {
     return (
         <div className="autoshops">
             <header>
-                <h1><Link to="/">Autoshops.com</Link></h1>
+                <h1><Link to="/">Auto Shop Finder</Link></h1>
             </header>
             <main>
                 <Route exact path="/" component={LandingPage}/>
