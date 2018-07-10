@@ -1,12 +1,19 @@
 import React from 'react';
 import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
+import { connect } from 'react-redux';
 import Input from './input';
+import {fetchProtectedData} from '../actions/protected-data';
 import {required, nonEmpty, email} from '../validators';
 
 export class ServicesForm extends React.Component {
+    componentDidMount() {
+        this.props.dispatch(fetchProtectedData());
+        console.log(this.props.initialValues);
+    }
+
     onSubmit(values) {
-        return fetch('/api/protected', {
-            method: 'POST',
+        return fetch(`/api/protected/${this.props.username}`, {
+            method: 'PUT',
             body: JSON.stringify(values),
             headers: {
                 'Content-Type': 'application/json'
@@ -66,6 +73,8 @@ export class ServicesForm extends React.Component {
                 <div className="message message-error">{this.props.error}</div>
             );
         }
+
+        //console.log(this.props.protectedData.name);
 
         return (
             <form
@@ -307,6 +316,13 @@ export class ServicesForm extends React.Component {
         );
     }
 }
+
+const mapStateToProps = state => ({
+    username: state.auth.currentUser.username,
+    initialValues: state.protectedData.data
+});
+
+ServicesForm = connect(mapStateToProps)(ServicesForm);
 
 export default reduxForm({
     form: 'services',

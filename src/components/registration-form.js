@@ -2,6 +2,7 @@ import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
+import {makeShop} from '../actions/protected-data';
 import Input from './input';
 import {required, nonEmpty, matches, length, isTrimmed} from '../validators';
 const passwordLength = length({min: 10, max: 72});
@@ -9,11 +10,12 @@ const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
     onSubmit(values) {
-        const {username, password, shopName} = values;
-        const user = {username, password, shopName};
+        const {username, password, shopname} = values;
+        const user = {username, password, shopname};
         return this.props
             .dispatch(registerUser(user))
-            .then(() => this.props.dispatch(login(username, password)));
+            .then(() => this.props.dispatch(login(username, password)))
+            .then(() => this.props.dispatch(makeShop(user)));
     }
 
     render() {
@@ -23,8 +25,8 @@ export class RegistrationForm extends React.Component {
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                <label htmlFor="shopName">Shop name</label>
-                <Field component={Input} type="text" name="shopName" />
+                <label htmlFor="shopname">Shop name</label>
+                <Field component={Input} type="text" name="shopname" />
                 <label htmlFor="username">Username</label>
                 <Field
                     component={Input}

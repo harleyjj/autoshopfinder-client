@@ -10,7 +10,7 @@ export class ShopList extends React.Component {
 
     renderResults() {
         if (this.props.loading) {
-            return <Spinner spinnerName="circle" noFadeIn />;
+            return <Spinner spinnername="circle" noFadeIn />;
         }
 
         if (this.props.error) {
