@@ -6,9 +6,12 @@ import {fetchProtectedData} from '../actions/protected-data';
 import {required, nonEmpty, email} from '../validators';
 
 export class ServicesForm extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(fetchProtectedData());
-        console.log(this.props.initialValues);
+    constructor(props) {
+        super(props);
+        this.props.dispatch(fetchProtectedData())
+        //.then(action => this.props.initialValues = action.data);
+        .then(action => this.props.initialize(action.data));
+        //.then(action => Object.keys(action.data).forEach(key => this.props.change(key, action.data[key])));
     }
 
     onSubmit(values) {
@@ -58,6 +61,7 @@ export class ServicesForm extends React.Component {
     }
 
     render() {
+        //console.log(this.props.initialValues);
         let successMessage;
         if (this.props.submitSucceeded) {
             successMessage = (
@@ -88,6 +92,7 @@ export class ServicesForm extends React.Component {
                     type="text"
                     component={Input}
                     label="Name"
+                    value="Test Shop"
                     validate={[required, nonEmpty]}
                 />
                 <Field
@@ -319,13 +324,15 @@ export class ServicesForm extends React.Component {
 
 const mapStateToProps = state => ({
     username: state.auth.currentUser.username,
+    data: state.protectedData.data,
     initialValues: state.protectedData.data
 });
 
-ServicesForm = connect(mapStateToProps)(ServicesForm);
-
-export default reduxForm({
+ServicesForm = reduxForm({
     form: 'services',
     onSubmitFail: (errors, dispatch) =>
         dispatch(focus('services', Object.keys(errors)[0]))
 })(ServicesForm);
+
+export default connect(mapStateToProps)(ServicesForm);
+

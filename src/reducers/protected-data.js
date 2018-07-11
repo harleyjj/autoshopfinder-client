@@ -4,11 +4,12 @@ import {
 } from '../actions/protected-data';
 
 const initialState = {
-    data: '',
+    data: {},
     error: null
 };
 
 export default function reducer(state = initialState, action) {
+    //console.log(action);
     if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {
         return Object.assign({}, state, {
             data: action.data,
