@@ -3,11 +3,14 @@ import {
     FETCH_SHOPS_SUCCESS,
     FETCH_SHOPS_ERROR
 } from '../actions/shop';
+import services from '../services';
+
 
 const initialState = {
     shops: [],
     loading: false,
-    error: null
+    error: null,
+    services
 }
 
 export default function reducer(state = initialState, action) {
