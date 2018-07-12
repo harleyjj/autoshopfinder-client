@@ -10,7 +10,11 @@ export class ServicesForm extends React.Component {
         super(props);
         this.props.dispatch(fetchProtectedData())
         //.then(action => this.props.initialValues = action.data);
-        .then(action => this.props.initialize(action.data));
+        .then(action => {
+            if (action) {
+                this.props.initialize(action.data);
+            }
+        });
         //.then(action => Object.keys(action.data).forEach(key => this.props.change(key, action.data[key])));
     }
 
@@ -72,7 +76,44 @@ export class ServicesForm extends React.Component {
             );
         }
 
-        //console.log(this.props.protectedData.name);
+        let simple_text_fields = [
+            'Street',
+            'City',
+            'State',
+            'Zip',
+            'Phone',
+            'Monday', 
+            'Tuesday', 
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday',
+        ];
+
+        simple_text_fields = simple_text_fields.map(field => {
+            return <Field
+                key={field}
+                name={field.toLowerCase()}
+                type="text"
+                component={Input}
+                label={field}
+            />;
+        });
+
+        const services_checkboxes = [];
+
+        for (let i = 0; i < this.props.services.keys.length; i++) {
+            services_checkboxes.push(
+                    <Field
+                    key={this.props.services.keys[i]}
+                    name={this.props.services.keys[i]}
+                    type="checkbox"
+                    component={Input}
+                    label={this.props.services.strings[i]}
+                />
+                );
+        }
 
         return (
             <form
@@ -86,80 +127,7 @@ export class ServicesForm extends React.Component {
                     type="text"
                     component={Input}
                     label="Name"
-                    value="Test Shop"
                     validate={[required, nonEmpty]}
-                />
-                <Field
-                    name="street"
-                    type="text"
-                    component={Input}
-                    label="Street"
-                />
-                <Field
-                    name="city"
-                    type="text"
-                    component={Input}
-                    label="City"
-                />
-                <Field
-                    name="state"
-                    type="text"
-                    component={Input}
-                    label="State"
-                />
-                <Field
-                    name="zip"
-                    type="text"
-                    component={Input}
-                    label="Zip"
-                />
-                <Field
-                    name="phone"
-                    type="text"
-                    component={Input}
-                    label="Phone"
-                />
-                <Field
-                    name="monday"
-                    type="text"
-                    component={Input}
-                    label="Monday"
-                />
-                <Field
-                    name="tuesday"
-                    type="text"
-                    component={Input}
-                    label="Tuesday"
-                />
-                <Field
-                    name="wednesday"
-                    type="text"
-                    component={Input}
-                    label="Wednesday"
-                />
-                <Field
-                    name="thursday"
-                    type="text"
-                    component={Input}
-                    label="Thursday"
-                />
-                <Field
-                    name="friday"
-                    type="text"
-                    component={Input}
-                    label="Friday"
-                />
-                <Field
-                    name="saturday"
-                    type="text"
-                    component={Input}
-                    label="Saturday"
-                />
-                <Field
-                    name="sunday"
-                    type="text"
-                    component={Input}
-                    label="Sunday"
                 />
                 <Field
                     name="email"
@@ -168,132 +136,8 @@ export class ServicesForm extends React.Component {
                     label="Email address"
                     validate={[required, nonEmpty, email]}
                 />
-                <Field
-                    name="oilchanges"
-                    type="checkbox"
-                    component={Input}
-                    label="Oil changes"
-                />
-                <Field
-                    name="batteryinstallation"
-                    type="checkbox"
-                    component={Input}
-                    label="Battery installation"
-                />
-                <Field
-                    name="filterreplacement"
-                    type="checkbox"
-                    component={Input}
-                    label="Filter Replacement"
-                />
-                <Field
-                    name="fluidexchanges"
-                    type="checkbox"
-                    component={Input}
-                    label="Fluid Exchanges"
-                />
-                <Field
-                    name="fuelsystemservices"
-                    type="checkbox"
-                    component={Input}
-                    label="Fuel System Services"
-                />
-                <Field
-                    name="scheduledoeservices"
-                    type="checkbox"
-                    component={Input}
-                    label="Scheduled OE Services"
-                />
-                <Field
-                    name="winterpreppackage"
-                    type="checkbox"
-                    component={Input}
-                    label="Winter Prep Package"
-                />
-                <Field
-                    name="summerpreppackage"
-                    type="checkbox"
-                    component={Input}
-                    label="Summer Prep Package"
-                />
-                <Field
-                    name="wheelalignment"
-                    type="checkbox"
-                    component={Input}
-                    label="Wheel Alignment"
-                />
-                <Field
-                    name="tirerepair"
-                    type="checkbox"
-                    component={Input}
-                    label="Tire Repair"
-                />
-                <Field
-                    name="tireinstallation"
-                    type="checkbox"
-                    component={Input}
-                    label="Tire Installation"
-                />
-                <Field
-                    name="acheat"
-                    type="checkbox"
-                    component={Input}
-                    label="Air Conditioning and Heat"
-                />
-                <Field
-                    name="beltsandhoses"
-                    type="checkbox"
-                    component={Input}
-                    label="Belts and Hoses"
-                />
-                <Field
-                    name="brakeservices"
-                    type="checkbox"
-                    component={Input}
-                    label="Brake Services"
-                />
-                <Field
-                    name="diagnostics"
-                    type="checkbox"
-                    component={Input}
-                    label="Error Code Diagnostics"
-                />
-                <Field
-                    name="checkengine"
-                    type="checkbox"
-                    component={Input}
-                    label="Check Engine Light Dianostics"
-                />
-                <Field
-                    name="suspension"
-                    type="checkbox"
-                    component={Input}
-                    label="Shock Absorbers and Suspension"
-                />
-                <Field
-                    name="performance"
-                    type="checkbox"
-                    component={Input}
-                    label="Performance Part Installation"
-                />
-                <Field
-                    name="caraudio"
-                    type="checkbox"
-                    component={Input}
-                    label="Car Audio"
-                />
-                <Field
-                    name="stateinspection"
-                    type="checkbox"
-                    component={Input}
-                    label="State Mandated Inspections"
-                />
-                <Field
-                    name="transmissions"
-                    type="checkbox"
-                    component={Input}
-                    label="Transmission Rebuild and Replacement"
-                />
+                {simple_text_fields}
+                {services_checkboxes}
                 <button
                     type="submit"
                     disabled={this.props.pristine || this.props.submitting}>
@@ -307,7 +151,8 @@ export class ServicesForm extends React.Component {
 const mapStateToProps = state => ({
     username: state.auth.currentUser.username,
     data: state.protectedData.data,
-    initialValues: state.protectedData.data
+    initialValues: state.protectedData.data,
+    services: state.shop.services
 });
 
 ServicesForm = reduxForm({

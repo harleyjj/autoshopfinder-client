@@ -35,7 +35,7 @@ export class ShopList extends React.Component {
                 ];
 
                 days = days.map(day => {
-                    return <span key= {`${day}.${shop}`}>{`${day}: ${shop[day.toLowerCase()]}`}<br/></span>;
+                    return <span key= {`${day}.${shop}`}>{`${day}: ${shop[day.toLowerCase()] ? shop[day.toLowerCase()] : 'Closed'}`}<br/></span>;
                 });
 
                 const services_available = [];
