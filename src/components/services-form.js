@@ -2,7 +2,7 @@ import React from 'react';
 import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
 import { connect } from 'react-redux';
 import Input from './input';
-import {fetchProtectedData} from '../actions/protected-data';
+import {fetchProtectedData, updateProtectedData} from '../actions/protected-data';
 import {required, nonEmpty, email} from '../validators';
 
 export class ServicesForm extends React.Component {
@@ -15,13 +15,7 @@ export class ServicesForm extends React.Component {
     }
 
     onSubmit(values) {
-        return fetch(`/api/protected/${this.props.username}`, {
-            method: 'PUT',
-            body: JSON.stringify(values),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        return this.props.dispatch(updateProtectedData(values))
             .then(res => {
                 if (!res.ok) {
                     if (
@@ -100,84 +94,72 @@ export class ServicesForm extends React.Component {
                     type="text"
                     component={Input}
                     label="Street"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="city"
                     type="text"
                     component={Input}
                     label="City"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="state"
                     type="text"
                     component={Input}
                     label="State"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="zip"
                     type="text"
                     component={Input}
                     label="Zip"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="phone"
                     type="text"
                     component={Input}
                     label="Phone"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="monday"
                     type="text"
                     component={Input}
                     label="Monday"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="tuesday"
                     type="text"
                     component={Input}
                     label="Tuesday"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="wednesday"
                     type="text"
                     component={Input}
                     label="Wednesday"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="thursday"
                     type="text"
                     component={Input}
                     label="Thursday"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="friday"
                     type="text"
                     component={Input}
                     label="Friday"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="saturday"
                     type="text"
                     component={Input}
                     label="Saturday"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="sunday"
                     type="text"
                     component={Input}
                     label="Sunday"
-                    validate={[required, nonEmpty]}
                 />
                 <Field
                     name="email"
@@ -193,79 +175,79 @@ export class ServicesForm extends React.Component {
                     label="Oil changes"
                 />
                 <Field
-                    name="batteryInstallation"
+                    name="batteryinstallation"
                     type="checkbox"
                     component={Input}
                     label="Battery installation"
                 />
                 <Field
-                    name="filterReplacement"
+                    name="filterreplacement"
                     type="checkbox"
                     component={Input}
                     label="Filter Replacement"
                 />
                 <Field
-                    name="fluidExchanges"
+                    name="fluidexchanges"
                     type="checkbox"
                     component={Input}
                     label="Fluid Exchanges"
                 />
                 <Field
-                    name="fuelSystemServices"
+                    name="fuelsystemservices"
                     type="checkbox"
                     component={Input}
                     label="Fuel System Services"
                 />
                 <Field
-                    name="scheduledOEServices"
+                    name="scheduledoeservices"
                     type="checkbox"
                     component={Input}
                     label="Scheduled OE Services"
                 />
                 <Field
-                    name="winterPrepPackage"
+                    name="winterpreppackage"
                     type="checkbox"
                     component={Input}
                     label="Winter Prep Package"
                 />
                 <Field
-                    name="summerPrepPackage"
+                    name="summerpreppackage"
                     type="checkbox"
                     component={Input}
                     label="Summer Prep Package"
                 />
                 <Field
-                    name="wheelAlignment"
+                    name="wheelalignment"
                     type="checkbox"
                     component={Input}
                     label="Wheel Alignment"
                 />
                 <Field
-                    name="tireRepair"
+                    name="tirerepair"
                     type="checkbox"
                     component={Input}
                     label="Tire Repair"
                 />
                 <Field
-                    name="tireInstallation"
+                    name="tireinstallation"
                     type="checkbox"
                     component={Input}
                     label="Tire Installation"
                 />
                 <Field
-                    name="acHeat"
+                    name="acheat"
                     type="checkbox"
                     component={Input}
                     label="Air Conditioning and Heat"
                 />
                 <Field
-                    name="beltsAndHoses"
+                    name="beltsandhoses"
                     type="checkbox"
                     component={Input}
                     label="Belts and Hoses"
                 />
                 <Field
-                    name="brakeServices"
+                    name="brakeservices"
                     type="checkbox"
                     component={Input}
                     label="Brake Services"
@@ -277,7 +259,7 @@ export class ServicesForm extends React.Component {
                     label="Error Code Diagnostics"
                 />
                 <Field
-                    name="checkEngine"
+                    name="checkengine"
                     type="checkbox"
                     component={Input}
                     label="Check Engine Light Dianostics"
@@ -295,13 +277,13 @@ export class ServicesForm extends React.Component {
                     label="Performance Part Installation"
                 />
                 <Field
-                    name="carAudio"
+                    name="caraudio"
                     type="checkbox"
                     component={Input}
                     label="Car Audio"
                 />
                 <Field
-                    name="stateInspection"
+                    name="stateinspection"
                     type="checkbox"
                     component={Input}
                     label="State Mandated Inspections"

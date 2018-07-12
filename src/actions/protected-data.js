@@ -30,6 +30,19 @@ export const fetchProtectedData = () => (dispatch, getState) => {
         });
 };
 
+export const updateProtectedData = (values) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    const username = getState().auth.currentUser.username;
+    return fetch(`${API_BASE_URL}api/protected/${username}`, {
+        method: 'PUT',
+        body: JSON.stringify(values),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+}
+
 export const makeShop = (user) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}api/protected/`, {
