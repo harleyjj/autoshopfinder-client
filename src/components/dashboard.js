@@ -12,12 +12,14 @@ export class Dashboard extends React.Component {
     render() {
         return (
             <div className="dashboard">
-                <div className="dashboard-username">
-                    Username: {this.props.username}
-                </div>
-                <button onClick={()=>this.logOut()}>Log Out</button>
-                <div className="shop-info-form">
-                    <ServicesForm/>
+                <div className="dashboard-children">
+                    <div className="dashboard-username">
+                        <h3>Username: {this.props.username}</h3>
+                    </div>
+                    <button onClick={()=>this.logOut()}>Log Out</button>
+                    <div className="shop-info-form">
+                        <ServicesForm/>
+                    </div>
                 </div>
             </div>
         );
