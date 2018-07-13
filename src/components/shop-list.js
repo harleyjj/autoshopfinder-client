@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Spinner from 'react-spinkit';
 import {fetchShops} from '../actions/shop';
+import Accordion from './Accordion';
 
 export class ShopList extends React.Component {
     componentDidMount() {
@@ -18,7 +19,7 @@ export class ShopList extends React.Component {
         }
 
         if (this.props.shops.length > 0) {
-            return this.props.shops.map((shop, index) => {
+            const shopAccordion = this.props.shops.map((shop, index) => {
                 const fields = Object.keys(shop);
                 fields.forEach(field => {
                     shop[field] = shop[field] === null ? '' : shop[field];
@@ -49,9 +50,8 @@ export class ShopList extends React.Component {
                 }
 
                 return (
-                    <li key={index}>
+                    <div data-trigger={shop.name} key={index}>
                         <address>
-                            <h3>{shop.name}</h3>
                             {shop.street}<br/>
                             {`${shop.city}, ${shop.state} ${shop.zip}`}<br/>
                             {shop.phone}<br/>
@@ -59,9 +59,13 @@ export class ShopList extends React.Component {
                             <h3>We offer:</h3>
                             {services_available}
                         </address>
-                    </li>
+                    </div>
                     );
             });
+
+            return <Accordion closeable={true}>
+                        {shopAccordion}
+                    </Accordion>;
         }
 
         return <li key="no results">No Results</li>;
@@ -69,9 +73,9 @@ export class ShopList extends React.Component {
 
     render() {
         return (
-            <ul className="shop-list">
+            <div className="shop-list">
                 {this.renderResults()}
-            </ul>
+            </div>
         );
     }
 }
