@@ -14,7 +14,41 @@ The server side is deployed as well and is hosted in this [repository](https://g
 
 ## Auto Shop Customers
 
-*
+* A shop customer can select "I'm looking for an autoshop" 
+
+![landing page-1](./src/images/screenshots/2.png?raw=true "Landing Page")
+
+* The list of shops hosted in the database are displayed, with the details for the first one open by default
+
+![shop list](./src/images/screenshots/3.png?raw=true "Shop List")
+
+* The customer can click another autoshop's name to see those details instead 
+
+![shop list-1](./src/images/screenshots/4.png?raw=true "Shop List")
+
+* How the list looks with all shop details collapsed
+
+![shop list-2](./src/images/screenshots/5.png?raw=true "Shop List")
+
+* The Auto Shop Finder Logo at the top can be clicked any time to go back to the landing page.
+
+## Auto Shops
+
+* An autoshop can select "I am an autoshop" 
+
+![landing page-2](./src/images/screenshots/6.png?raw=true "Landing Page")
+
+* The autoshop rep can log in if they have an account or click "register"
+
+![login page](./src/images/screenshots/7.png?raw=true "Login Page")
+
+* If the autoshop wants to register to list their autoshop, it can be done on the Registration page, which will create a new autoshop entry upon successful form submission.
+
+![registration page](./src/images/screenshots/8.png?raw=true "Registration Page")
+
+* Upon login, the autoshop is brought to the dashboard, which features a form to update their information.  The form is pre-populated with their information from the database and requires them to be authenticated.
+
+![autoshop dashboard](./src/images/screenshots/9.png?raw=true "Autoshop Dashboard")
 
 ## Folder Structure
 
