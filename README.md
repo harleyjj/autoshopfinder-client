@@ -10,7 +10,7 @@ The server side is deployed as well and is hosted in this [repository](https://g
 
 * The landing page is where users can decide whether they want to find an autoshop or be listed.
 
-[landing page](./src/images/screenshots/1.png?raw=true "Landing Page")
+![landing page](./src/images/screenshots/1.png?raw=true "Landing Page")
 
 ## Auto Shop Customers
 
